@@ -11,9 +11,9 @@ namespace mouse
 {
     public partial class Form1 : Form
     {
-        //スピードの変数
-        int iValX = 10;
-        int iValY = 10;
+        //ラベルの移動変数
+        int iVelX = 10;
+        int iVelY = 10;
 
         public Form1()
         {
@@ -33,32 +33,29 @@ namespace mouse
             Text = "" + cpos.X + "," + cpos.Y;
 
             //マウス座標（ざひょう）にラベルをくっつける。(マウスの座標（ざひょう）をlabelに代入（だいにゅう）)
-            //label1.Left = (label2.Top < 0) || (label2.Top + label2.Height > ClientSize.Height);
             label1.Left = cpos.X;
-
             label1.Top = cpos.Y;
 
             //------------------ラベル2の移動-------------------------
             //ラベル2の移動（いどう）
-            int vx = int.Parse(textBox1.Text);
-            int vy = int.Parse(textBox2.Text);
-
+            int vx = iVelX;
+            int vy = iVelY;
             // ラベルの座標（ざひょう）に加算（かさん）
-            label2.Left = label2.Left + vx;
-            label2.Top = label2.Top + vy;
+            label2.Left += vx;
+            label2.Top += vy;
 
             if ((label2.Left < 0) || (label2.Left + label2.Width > ClientSize.Width))
             {
                 //左右反転（さゆうはんてん）
                 label2.Left -= vx;
-                textBox1.Text = (-vx).ToString();
+                iVelX = -vx;
             }
             else
             if ((label2.Top < 0) || (label2.Top + label2.Height > ClientSize.Height))
             {
                 //上下反転（じょうげはんてん）
                 label2.Top -= vy;
-                textBox2.Text = (-vy).ToString();
+                iVelY = -vy;
             }
 
             //-------------------ラベル1とラベル2の衝突判定------------------------
@@ -72,8 +69,8 @@ namespace mouse
                 && (cpos.Y >= label2.Top)
                 && (cpos.Y < label2.Top + label2.Height))
             {
-                textBox1.Text = "0";
-                textBox2.Text = "0";
+                iVelX = 0;
+                iVelY = 0;
             }
 
         }
