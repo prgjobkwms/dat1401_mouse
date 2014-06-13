@@ -11,6 +11,10 @@ namespace mouse
 {
     public partial class Form1 : Form
     {
+        //スピードの変数
+        int iValX = 10;
+        int iValY = 10;
+
         public Form1()
         {
             InitializeComponent();
@@ -29,7 +33,9 @@ namespace mouse
             Text = "" + cpos.X + "," + cpos.Y;
 
             //マウス座標（ざひょう）にラベルをくっつける。(マウスの座標（ざひょう）をlabelに代入（だいにゅう）)
-            label1.Left = (label2.Top < 0) || (label2.Top + label2.Height > ClientSize.Height);
+            //label1.Left = (label2.Top < 0) || (label2.Top + label2.Height > ClientSize.Height);
+            label1.Left = cpos.X;
+
             label1.Top = cpos.Y;
 
             //------------------ラベル2の移動-------------------------
@@ -58,18 +64,17 @@ namespace mouse
             //-------------------ラベル1とラベル2の衝突判定------------------------
             //マウスカーソルと重なったら
             //タイマー停止or表情変更
-            //考え方：top～height + left + widthの中のcposが入ったらラベル２の変数を0にする
-            if ((label2.Left < cpos.X) && (label2.Left + label2.Width > cpos.X))
-            {
-                textBox1.Text = 0;
-                textBox2.Text = 0;
-            }
-            if ((label2.Top < cpos.Y) && (label2.Top + label2.Height > cpos.Y))
-            {
-                textBox1.Text = 0;
-                textBox2.Text = 0;
-            }
+            //cpos.x : マウスｘ座標
+            //cpos.y : マウスy座標
 
+            if(    (cpos.X >= label2.Left)
+                && (cpos.X < label2.Left + label2.Width)
+                && (cpos.Y >= label2.Top)
+                && (cpos.Y < label2.Top + label2.Height))
+            {
+                textBox1.Text = "0";
+                textBox2.Text = "0";
+            }
 
         }
 
