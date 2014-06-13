@@ -12,8 +12,10 @@ namespace mouse
     public partial class Form1 : Form
     {
         //ラベルの移動変数
-        int iVelX = 10;
-        int iVelY = 10;
+        int iVelX = rand.Next(-10,11);
+        int iVelY = rand.Next(-10,11);
+        //rand変数
+        private static Random rand = new Random();
 
         public Form1()
         {
