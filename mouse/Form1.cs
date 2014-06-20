@@ -208,8 +208,7 @@ namespace mouse
         //ラベル２再起動ボタン
        private void button3_Click(object sender, EventArgs e)
         {
-             iVelX = rand.Next(SPEED_MIN, SPEED_MAX);
-             iVelY = rand.Next(SPEED_MIN, SPEED_MAX);
+
         }
         
     }
